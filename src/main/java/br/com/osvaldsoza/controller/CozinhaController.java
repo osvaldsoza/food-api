@@ -3,6 +3,7 @@ package br.com.osvaldsoza.controller;
 import br.com.osvaldsoza.domain.model.Cozinha;
 import br.com.osvaldsoza.service.CozinhaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,8 +46,16 @@ public class CozinhaController {
     }
 
     @DeleteMapping("/{cozinhaId}")
-    public ResponseEntity excluir(@PathVariable Long cozinhaId) {
-        cozinhaService.excluir(cozinhaId);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity remover(@PathVariable Long cozinhaId) {
+        try {
+            var cozinha = cozinhaService.buscar(cozinhaId).get();
+            if (cozinha != null) {
+                cozinhaService.remover(cozinha);
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.notFound().build();
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 }

@@ -19,21 +19,21 @@ public class CozinhaService {
         return cozinhaRepository.findAll();
     }
 
-    public Cozinha adicionar(Cozinha cozinha){
-         return cozinhaRepository.save(cozinha);
+    public Optional<Cozinha> buscar(Long cozinhaId) {
+        return cozinhaRepository.findById(cozinhaId);
     }
 
-    public Cozinha atualizar(Long cozinhaId, Cozinha cozinha){
+    public Cozinha adicionar(Cozinha cozinha) {
+        return cozinhaRepository.save(cozinha);
+    }
+
+    public Cozinha atualizar(Long cozinhaId, Cozinha cozinha) {
         var cozinhaAtual = buscar(cozinhaId);
-        BeanUtils.copyProperties(cozinha,cozinhaAtual.get(), "id");
+        BeanUtils.copyProperties(cozinha, cozinhaAtual.get(), "id");
         return cozinhaRepository.save(cozinhaAtual.get());
     }
 
-    public void excluir(Long cozinhaId){
-        cozinhaRepository.deleteById(cozinhaId);
-    }
-
-    public Optional<Cozinha> buscar(Long cozinhaId){
-       return cozinhaRepository.findById(cozinhaId);
+    public void remover(Cozinha cozinha) {
+        cozinhaRepository.delete(cozinha);
     }
 }
