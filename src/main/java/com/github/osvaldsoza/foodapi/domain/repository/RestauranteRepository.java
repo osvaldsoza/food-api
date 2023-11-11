@@ -1,6 +1,6 @@
-package com.github.osvaldsoza.foodapi.repository;
+package com.github.osvaldsoza.foodapi.domain.repository;
 
-import com.github.osvaldsoza.foodapi.model.Restaurante;
+import com.github.osvaldsoza.foodapi.domain.model.Restaurante;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
