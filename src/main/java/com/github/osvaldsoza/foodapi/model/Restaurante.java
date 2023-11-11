@@ -8,16 +8,20 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cozinha {
+public class Restaurante {
 
     @Id
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String cozinha;
+    private String nome;
+
+    private BigDecimal taxaFrete;
 }
