@@ -1,11 +1,11 @@
 version: '3.1'
 services:
   postgres-petz:
-    container_name: postgres-petz-api
+    container_name: postgres-food-api
     image: postgres:12.2
     environment:
-      POSTGRES_USER: petz
-      POSTGRES_PASSWORD: petz
-      POSTGRES_DB: petz
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: delivery
     ports:
       - "5432:5432"
